@@ -1,0 +1,38 @@
+Shell Sort
+
+What is Shell Sort?
+Shell Sort is an improved variation of Insert Sort in terms of breaking the original list into smaller sublists which are then individually sorted into the correct position.
+
+How it works
+Instead of comparing elements side by side like insertion sort, we compare elements that are far apart. The distance between elements is known as the "gap". If elements being compared are in the wrong order, they would be swapped across the gap. Once the compared element is passed, the gap is becomes smaller by dividing in half again and begins the next pass resulting in a reduction of intervals between elements that are being sorted. This process is repeated until the gap size is 1, at which point the algorithm functions as a form of insertion sort that will pass reasonably quickly since the data is well sorted at this point.
+
+Complexity Analysis of Shell Sort:
+Time Complexity Worst case O(n*(logn)^2), Average case O(n log n)
+Space Complexity O(1)
+
+Algorithm Steps:
+1. Find length of array.
+2. Divide the length of array in half to set the gap size.
+3. Traverse and compare elements to the left of gap and sort them at their appropriate positions.
+4. Repeats process from step 2 till gap size is 1.
+5. Algorithm quickly preforms an insertion sort, comparing elements side by side through the entire array.
+6. Prints out sorted list.
+
+Pseudocode:
+1. length = length of array
+2. for(gap = length/2, gap > 0, gap = gap / 2)
+3.      for(i = gap, i < length, i++)
+4.            temp = array[i]
+5.            j = i
+6.            while j >= gap and temp > array[j - gap]
+7.                  array[j] = array[j - gap]
+8.                  j = j - gap
+9.                  array[j] = temp
+
+How many operations in each step?
+f(n) = 1 + 5log2(n) * (5(n/2) + 1) * (6log2(n) + 1) -> Worst case growth rate of O(nlog(n)^2)
+
+1. 1 assignment operation
+2. (2 assignment, 1 arithmetic operation, 1 comparison operation) log2(n) times, plus 1 comparison operation (final comparison of loop) = 5log2(n) + 1
+3 - 5. (3 assignment operations, 1 arithmetic operation, 1 comparison operation) n / 2 times, plus 1 comparison operation (final comparison of loop) = 5(n/2) + 1
+6 - 9. (2 comparison operations, 3 assignment operations, 1 arithmetic operation) log2(n) times, plus 1 comparison operation (final comparison of loop) = 6log2(n) + 1
